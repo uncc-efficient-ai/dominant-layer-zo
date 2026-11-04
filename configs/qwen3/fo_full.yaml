@@ -1,0 +1,71 @@
+# Portable COPA starting point; tune on held-out training data before reporting.
+model:
+  family: qwen3
+  name: Qwen/Qwen3-8B-Base
+  dtype: bfloat16
+  revision: null
+  tokenizer_revision: null
+  fp32_residual_stream: false
+data:
+  task: copa
+  seed: 0
+  cutoff_len: 256
+  train_on_inputs: false
+  loader_kwargs: {}
+training:
+  method: fo
+  scope: full
+  layer: null
+  part: layer
+  lr: 6.0e-06
+  epsilon: 0.001
+  directions: 1
+  noise: rademacher
+  seed: 0
+  steps: null
+  batch_size: 8
+  eval_steps: 200
+  logging_steps: 10
+  max_zo_coeff: null
+  non_diff: false
+  forward_autocast: none
+  upcast_loss_logits_fp32: true
+  upcast_zo_scalar_fp32: true
+fo:
+  epochs: 5.0
+  gradient_accumulation_steps: 1
+  gradient_checkpointing: false
+  amp: bf16
+  scheduler: linear
+  warmup_ratio: 0.0
+  weight_decay: 0.0
+  max_grad_norm: 1.0
+  adam_beta1: 0.9
+  adam_beta2: 0.999
+  adam_epsilon: 1.0e-08
+lora:
+  rank: 8
+  alpha: 16.0
+  dropout: 0.0
+  targets:
+  - q_proj
+  - v_proj
+  init_seed: 0
+  perturb_math_fp32: true
+sparse:
+  selected_ratio: 0.25
+evaluation:
+  dtype: float16
+  seed: 0
+  max_length: 2048
+  batch_size: 16
+  max_samples: null
+  max_new_tokens: 32
+  after_training: true
+checkpoint:
+  strategy: 'no'
+  save_steps: 2000
+  save_total_limit: 1
+  load_best_model_at_end: false
+  save_final: true
+output_dir: runs/qwen3-copa-fo-full

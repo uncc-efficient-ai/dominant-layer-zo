@@ -1,0 +1,10 @@
+include README.md THIRD_PARTY_NOTICES.md
+recursive-include configs *.yaml
+recursive-include scripts *.py *.sh
+recursive-include licenses *.txt
+recursive-include tests *.py
+recursive-include tests/fixtures *.json
+recursive-include extensions *.py *.yaml *.md
+prune .local
+prune docs
+exclude STORAGE.md

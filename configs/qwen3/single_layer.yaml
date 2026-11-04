@@ -1,0 +1,47 @@
+# COPA example. Tune LR on internal dev; See README.md for usage and evaluation settings.
+model:
+  family: qwen3
+  name: Qwen/Qwen3-8B-Base
+  dtype: float16
+  revision: 49e3418fbbbca6ecbdf9608b4d22e5a407081db4
+  tokenizer_revision: null
+  fp32_residual_stream: false
+data:
+  task: copa
+  seed: 0
+  cutoff_len: 256
+  train_on_inputs: false
+  loader_kwargs: {}
+training:
+  scope: layer
+  layer: 6
+  part: layer
+  lr: 1.0e-06
+  epsilon: 0.001
+  directions: 1
+  noise: rademacher
+  seed: 0
+  steps: 10000
+  batch_size: 16
+  eval_steps: 2000
+  logging_steps: 10
+  max_zo_coeff: null
+  non_diff: false
+  forward_autocast: none
+  upcast_loss_logits_fp32: true
+  upcast_zo_scalar_fp32: true
+evaluation:
+  dtype: float16
+  seed: 0
+  max_length: 2048
+  batch_size: 16
+  max_samples: null
+  max_new_tokens: 32
+  after_training: true
+checkpoint:
+  strategy: 'no'
+  save_steps: 2000
+  save_total_limit: 1
+  load_best_model_at_end: false
+  save_final: true
+output_dir: runs/qwen3-copa-layer

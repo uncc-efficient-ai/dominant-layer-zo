@@ -1,0 +1,26 @@
+# Countdown ES with Gaussian perturbations and greedy decoding.
+# Configure data paths and output_root for each study.
+model:
+  name: Qwen/Qwen3-8B
+  revision: b968826d9c46dd6066d109eabc6255188de91218
+  dtype: float16
+  attention: eager
+data:
+  train: data/es-countdown/train.jsonl
+  test: data/es-countdown/test.jsonl
+  seed: 0
+  expected_test_examples: 2000
+es:
+  population_size: 16
+  prompts_per_member: 16
+  iterations: 200
+  sigma: 0.001
+  alpha: 0.0005
+  seed: 0
+generation:
+  batch_size: 16
+  max_input_tokens: 4096
+  max_new_tokens: 512
+  format_prefix: "<think>"
+save_final: false
+output_root: runs/es-countdown

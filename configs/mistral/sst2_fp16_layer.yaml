@@ -1,0 +1,55 @@
+# SST-2 experiment; held-out-train selection seed42, reporting seed0.
+# Official872 accuracy 92.0872%; 10000 steps, zero skips, no checkpoints.
+# Native fp16 QK; terminal dev passes the predeclared late-degradation gate.
+# See README.md for usage and evaluation settings.
+model:
+  family: mistral
+  name: mistralai/Mistral-7B-v0.1
+  dtype: float16
+  revision: 27d67f1b5f57dc0953326b2601d68371d40ea8da
+  tokenizer_revision: null
+  fp32_residual_stream: false
+  fp32_attention_scores: false
+data:
+  task: sst2
+  seed: 0
+  cutoff_len: 256
+  train_on_inputs: false
+  loader_kwargs:
+    train_n: 1000
+    dev_n: 500
+    test_n: 1000
+training:
+  method: zo
+  scope: layer
+  layer: 1
+  part: layer
+  lr: 1.0e-07
+  epsilon: 0.000244140625
+  directions: 1
+  noise: rademacher
+  seed: 0
+  steps: 10000
+  batch_size: 16
+  eval_steps: 200
+  logging_steps: 10
+  max_zo_coeff: null
+  non_diff: false
+  forward_autocast: none
+  upcast_loss_logits_fp32: true
+  upcast_zo_scalar_fp32: true
+evaluation:
+  dtype: float16
+  seed: 0
+  max_length: 2048
+  batch_size: 16
+  max_samples: null
+  max_new_tokens: 32
+  after_training: true
+checkpoint:
+  strategy: 'no'
+  save_steps: 2000
+  save_total_limit: 2
+  load_best_model_at_end: false
+  save_final: false
+output_dir: runs/mistral-sst2-layer-refined-seed0

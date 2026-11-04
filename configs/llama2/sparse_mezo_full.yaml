@@ -1,0 +1,45 @@
+model:
+  family: llama2
+  name: meta-llama/Llama-2-7b-hf
+  revision: 01c7f73d771dfac7d292323805ebc428287df4f9
+  dtype: float16
+  fp32_attention_scores: true
+data:
+  task: sst2
+  seed: 0
+  cutoff_len: 256
+  train_on_inputs: false
+  loader_kwargs:
+    train_n: 1000
+    dev_n: 500
+    test_n: 1000
+training:
+  method: sparse_mezo
+  scope: full
+  layer: null
+  part: layer
+  lr: 1.0e-06
+  epsilon: 0.001
+  directions: 1
+  noise: gaussian
+  seed: 0
+  steps: 10000
+  batch_size: 16
+  eval_steps: 2000
+  logging_steps: 10
+  max_zo_coeff: null
+  non_diff: false
+sparse:
+  selected_ratio: 0.25
+evaluation:
+  dtype: float16
+  seed: 0
+  max_length: 2048
+  batch_size: 16
+  max_samples: null
+  after_training: true
+checkpoint:
+  strategy: 'no'
+  save_final: false
+  load_best_model_at_end: false
+output_dir: runs/llama2-sst2-sparse-mezo-full
