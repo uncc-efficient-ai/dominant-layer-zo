@@ -1,5 +1,4 @@
-# Validated seed-0, 10,000-step LM objective; See README.md for usage and evaluation settings.
-# No model checkpoints. Final evaluation uses all 10,570 validation examples.
+# SQuAD language modeling. See README.md for usage and evaluation settings.
 model:
   family: llama2
   name: meta-llama/Llama-2-7b-hf

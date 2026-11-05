@@ -1,6 +1,4 @@
-# Held-out-train LR selected with perturbation seed 42; reporting seed 0.
-# 10000 steps: official SQuAD F1 86.4198%; one reporting seed only.
-# Native eager fp16, no QK-fp32, no checkpoints. See README.md for usage and evaluation settings.
+# SQuAD language modeling. See README.md for usage and evaluation settings.
 model:
   family: mistral
   name: mistralai/Mistral-7B-v0.1

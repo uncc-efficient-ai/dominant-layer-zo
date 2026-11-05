@@ -1,6 +1,4 @@
-# Held-out-train selection seed42, reporting seed0; epsilon=2^-12.
-# 10000-step official SQuAD F1 90.2082%, EM 82.5166%; one reporting seed.
-# Native eager fp16, no QK-fp32, no saved checkpoints. See README.md for usage and evaluation settings.
+# SQuAD language modeling. See README.md for usage and evaluation settings.
 model:
   family: mistral
   name: mistralai/Mistral-7B-v0.1

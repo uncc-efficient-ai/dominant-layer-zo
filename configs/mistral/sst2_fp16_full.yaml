@@ -1,7 +1,4 @@
-# SST-2 experiment; held-out-train selection seed42, reporting seed0.
-# Official872 accuracy 91.2844%; 10000 steps, zero skips, no checkpoints.
-# Seed-0 terminal dev loss is 24.2% above the best late dev loss.
-# See README.md for usage and evaluation settings.
+# SST-2 classification. See README.md for usage and evaluation settings.
 model:
   family: mistral
   name: mistralai/Mistral-7B-v0.1

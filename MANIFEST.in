@@ -1,6 +1,6 @@
 include README.md THIRD_PARTY_NOTICES.md
 recursive-include configs *.yaml
-recursive-include scripts *.py *.sh
+recursive-include scripts *.py
 recursive-include licenses *.txt
 recursive-include tests *.py
 recursive-include tests/fixtures *.json
