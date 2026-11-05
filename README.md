@@ -1,5 +1,8 @@
 # Dominant-Layer ZO
 
+Official implementation of **Dominant-Layer ZO: A Single Layer Dominates
+Zeroth-Order Fine-Tuning of LLMs**, accepted at **NeurIPS 2026**.
+
 Activation-based layer selection and zeroth-order fine-tuning for large language
 models. The workflow identifies a dominant transformer block from activation
 statistics, then applies finite-difference updates to that block while freezing
